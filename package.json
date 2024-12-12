@@ -1,28 +1,30 @@
 {
-  "name": "openauth-nextjs",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "next build",
-    "dev": "next dev --turbopack",
-    "lint": "next lint",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "15.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "sst": "3.3.71"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.0",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  }
+    "name": "openauth-nextjs",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "build": "next build",
+        "dev": "next dev --turbopack",
+        "lint": "next lint",
+        "start": "next start"
+    },
+    "dependencies": {
+        "next": "15.1.0",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "sst": "3.3.71"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "eslint": "^9",
+        "eslint-config-next": "15.1.0",
+        "eslint-config-prettier": "^9.1.0",
+        "postcss": "^8",
+        "prettier": "3.4.2",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5"
+    }
 }
