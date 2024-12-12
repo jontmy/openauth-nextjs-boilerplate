@@ -9,10 +9,13 @@
         "start": "next start"
     },
     "dependencies": {
+        "@openauthjs/openauth": "^0.1.0",
+        "hono": "^4.6.13",
         "next": "15.1.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "sst": "3.3.71"
+        "sst": "3.3.71",
+        "valibot": "1.0.0-beta.9"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",

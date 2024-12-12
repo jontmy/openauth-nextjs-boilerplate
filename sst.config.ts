@@ -16,6 +16,9 @@ export default $config({
         };
     },
     async run() {
-        new sst.aws.Nextjs("OpenAuthNextjs");
+        new sst.aws.Nextjs("Web");
+        new sst.aws.Auth("Auth", {
+            authorizer: "src/auth/index.handler",
+        });
     },
 });
