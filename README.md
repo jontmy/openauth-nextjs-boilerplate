@@ -8,7 +8,10 @@ Assuming you have your AWS credentials all set up, start the development server:
 pnpm sst dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser and click on "Sign in".
+This will navigate you to the OpenAuth authorizer Lambda function URL.
+
+After registering, you can find your OTP in the SST multiplexed terminal.
 
 ## Files
 - `src/auth/index.ts` - the AWS Lambda handler function
