@@ -1,3 +1,5 @@
+<img width="1792" alt="Screenshot 2024-12-12 at 23 13 43" src="https://github.com/user-attachments/assets/34bbd81a-cc07-439f-b73f-7787776f7f0b" />
+
 This is an SST + OpenAuth + [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
