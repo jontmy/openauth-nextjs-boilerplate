@@ -16,6 +16,7 @@ This will navigate you to the OpenAuth authorizer Lambda function URL.
 After registering, you can find your OTP in the SST multiplexed terminal.
 
 ## Files
+
 - `src/auth/index.ts` - the AWS Lambda handler function
 - `src/auth/client.ts` and `src/auth/subjects.ts` - the OpenAuth client and subject definition
 - `src/app/actions.ts` - server actions for signing in, signing out, and checking if a user is authenticated
