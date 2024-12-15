@@ -2,7 +2,7 @@ import Image from "next/image";
 import { auth, signIn, signOut } from "./actions";
 
 export default async function Home() {
-    const isSignedIn = await auth();
+    const user = await auth();
 
     return (
         <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -26,9 +26,16 @@ export default async function Home() {
                     <li>Save and see your changes instantly.</li>
                 </ol>
 
-                <div className="flex gap-4 items-center flex-col sm:flex-row font-[family-name:var(--font-geist-mono)]">
-                    {isSignedIn ? (
-                        <form action={signOut}>
+                <div className="flex gap-4 items-center flex-col sm:flex-row">
+                    {user ? (
+                        <form action={signOut} className="flex flex-col gap-4">
+                            <p>
+                                Signed in as{" "}
+                                <span className="font-medium">
+                                    {user.properties.email}
+                                </span>
+                                .
+                            </p>
                             <button
                                 type="submit"
                                 className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
@@ -37,7 +44,10 @@ export default async function Home() {
                             </button>
                         </form>
                     ) : (
-                        <form action={signIn} className="flex gap-4 items-center flex-col sm:flex-row">
+                        <form
+                            action={signIn}
+                            className="flex gap-4 items-center flex-col sm:flex-row"
+                        >
                             <button
                                 type="submit"
                                 className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"

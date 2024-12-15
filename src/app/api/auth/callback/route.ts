@@ -1,4 +1,5 @@
 import { client } from "@/auth/client";
+import { setTokens } from "@/auth/utils";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -7,31 +8,15 @@ export async function GET(req: NextRequest) {
     if (!code) {
         return NextResponse.json({ error: "Missing code" }, { status: 400 });
     }
-    try {
-        const tokens = await client.exchange(
-            code,
-            url.origin + "/api/auth/callback",
-        );
-        const response = NextResponse.redirect(url.origin + "/");
-        response.cookies.set({
-            name: "access_token",
-            value: tokens.access,
-            httpOnly: true,
-            sameSite: "lax",
-            path: "/",
-            maxAge: 34560000,
-        });
-        response.cookies.set({
-            name: "refresh_token",
-            value: tokens.refresh,
-            httpOnly: true,
-            sameSite: "lax",
-            path: "/",
-            maxAge: 34560000,
-        });
-        return response;
-    } catch (e) {
-        console.error(e);
-        return NextResponse.json(e, { status: 500 });
+
+    const exchanged = await client.exchange(
+        code,
+        url.origin + "/api/auth/callback",
+    );
+    if (exchanged.err) {
+        return NextResponse.json(exchanged.err, { status: 400 });
     }
+
+    await setTokens(exchanged.tokens.access, exchanged.tokens.refresh);
+    return NextResponse.redirect(url.origin);
 }

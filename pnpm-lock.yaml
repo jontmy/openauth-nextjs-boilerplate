@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@openauthjs/openauth':
-        specifier: ^0.1.0
-        version: 0.1.0(arctic@2.3.1)(hono@4.6.14)
+        specifier: ^0.2.3
+        version: 0.2.3(arctic@2.3.1)(hono@4.6.14)
       hono:
         specifier: ^4.6.14
         version: 4.6.14
@@ -330,8 +330,8 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@openauthjs/openauth@0.1.0':
-    resolution: {integrity: sha512-A843caBCCo9aB1ZAebZ5pxzPyOc3u/07ozsEcVDkKgzoJ1tZnEPKtse7M5o9t621TCeu2/SDjWDTda98K/HFNw==}
+  '@openauthjs/openauth@0.2.3':
+    resolution: {integrity: sha512-AEvpc8Ib1p7PZpUf3UHq73ve37pDbuP6mhw57bUSHq/FF9BA2suupGvFkF9bE2bX3zoyKkS5Vd2ZLMWy3zLn7A==}
     peerDependencies:
       arctic: ^2.2.2
       hono: ^4.0.0
@@ -2010,7 +2010,7 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@openauthjs/openauth@0.1.0(arctic@2.3.1)(hono@4.6.14)':
+  '@openauthjs/openauth@0.2.3(arctic@2.3.1)(hono@4.6.14)':
     dependencies:
       '@standard-schema/spec': 1.0.0-beta.3
       arctic: 2.3.1

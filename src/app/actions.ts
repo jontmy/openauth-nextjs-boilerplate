@@ -2,6 +2,7 @@
 
 import { client } from "@/auth/client";
 import { subjects } from "@/auth/subjects";
+import { setTokens } from "@/auth/utils";
 import { headers as getHeaders, cookies as getCookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -9,37 +10,21 @@ export async function auth() {
     const cookies = await getCookies();
     const accessToken = cookies.get("access_token");
     const refreshToken = cookies.get("refresh_token");
-
     if (!accessToken) {
-        return false;
+        return undefined;
     }
 
     const verified = await client.verify(subjects, accessToken.value, {
         refresh: refreshToken?.value,
     });
-
     if (verified.err) {
-        return false;
+        return undefined;
     }
+
     if (verified.tokens) {
-        cookies.set({
-            name: "access_token",
-            value: verified.tokens.access,
-            httpOnly: true,
-            sameSite: "lax",
-            path: "/",
-            maxAge: 34560000,
-        });
-        cookies.set({
-            name: "refresh_token",
-            value: verified.tokens.refresh,
-            httpOnly: true,
-            sameSite: "lax",
-            path: "/",
-            maxAge: 34560000,
-        });
+        await setTokens(verified.tokens.access, verified.tokens.refresh);
     }
-    return true;
+    return verified.subject;
 }
 
 export async function signIn() {
@@ -52,22 +37,7 @@ export async function signIn() {
             refresh: refreshToken?.value,
         });
         if (!verified.err && verified.tokens) {
-            cookies.set({
-                name: "access_token",
-                value: verified.tokens.access,
-                httpOnly: true,
-                sameSite: "lax",
-                path: "/",
-                maxAge: 34560000,
-            });
-            cookies.set({
-                name: "refresh_token",
-                value: verified.tokens.refresh,
-                httpOnly: true,
-                sameSite: "lax",
-                path: "/",
-                maxAge: 34560000,
-            });
+            await setTokens(verified.tokens.access, verified.tokens.refresh);
             redirect("/");
         }
     }
@@ -75,11 +45,11 @@ export async function signIn() {
     const headers = await getHeaders();
     const host = headers.get("host");
     const protocol = host?.includes("localhost") ? "http" : "https";
-    const redirectUrl = client.authorize(
+    const { url } = await client.authorize(
         `${protocol}://${host}/api/auth/callback`,
         "code",
     );
-    redirect(redirectUrl);
+    redirect(url);
 }
 
 export async function signOut() {
