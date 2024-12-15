@@ -2,6 +2,9 @@
 
 This is an SST + OpenAuth + [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+This setup is slightly opinionated—TypeScript (+ the ESLint plugin) and Prettier (+ the TailwindCSS plugin) have been added,
+based on the default configuration from `create-next-app`.
+
 ## Getting Started
 
 Assuming you have your AWS credentials all set up, start the development server:
